@@ -42,7 +42,7 @@ class User {
 		$pw = trim ( $pw );
 		$stmt = "SELECT COUNT(*) as Count
 				FROM " . DB_PRAEFIX . "user 
-				WHERE name = ? AND password = sha1(?)";
+				WHERE name = ? AND password = sha2(?, 512)";
 		$user = $this->app['db']->fetchAssoc( $stmt, array(
 			$this->name, $pw
 		) );

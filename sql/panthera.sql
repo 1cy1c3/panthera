@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.42)
 # Datenbank: panthera
-# Erstellungsdauer: 2015-09-06 7:33:19 nachm. +0000
+# Erstellungsdauer: 2015-09-07 11:19:07 nachm. +0000
 # ************************************************************
 
 
@@ -331,7 +331,7 @@ DROP TABLE IF EXISTS `cms_user`;
 CREATE TABLE `cms_user` (
   `UserId` int(4) NOT NULL AUTO_INCREMENT,
   `Name` varchar(32) NOT NULL,
-  `Password` varchar(40) NOT NULL,
+  `Password` varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (`UserId`,`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -340,7 +340,7 @@ LOCK TABLES `cms_user` WRITE;
 
 INSERT INTO `cms_user` (`UserId`, `Name`, `Password`)
 VALUES
-	(1,'panthera','d090414f41effdfa135ddc39a5ed7ae6cc2e6bb0');
+	(1,'panthera','835e34ddfc2efaf5e771f982fbb57bf171ef62d2bc5cdc2495004d3632c877efc77bfbff0da980b49c541145ccea8140d997c09789e2b7d10b6b4c7c8621e0d1');
 
 /*!40000 ALTER TABLE `cms_user` ENABLE KEYS */;
 UNLOCK TABLES;
