@@ -1,0 +1,25 @@
+<div class="container">
+	{{ msg }}
+
+	<form action="" method="post" class="form-signin">
+		<h2 class="form-signin-heading">Please sign in</h2>
+		<label for="username" class="sr-only">User</label> <input type="text"
+			name="username" class="form-control" id="username" value=""
+			placeholder="panthera" required autofocus /> <label for="password"
+			class="sr-only">User</label> <input type="password" name="password"
+			class="form-control" id="password" placeholder="panthera" required />
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
+			in</button>
+	</form>
+</div>
+<!-- /container -->
+
+<!-- jQuery -->
+<script
+	src="{{ app.request.basepath }}/assets/external/jquery/dist/jquery.min.js"></script>
+<script src="{{ app.request.basepath }}/assets/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="{{ app.request.basepath }}/assets/css/bootstrap.min.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="{{ app.request.basepath }}/assets/css/login.css" type="text/css" />

@@ -1,0 +1,38 @@
+{% extends layout %} 
+{% block title %} Pages {% endblock %} 
+{% block description %} Display of the pages in the cms {% endblock %} 
+{% block keywords %} pages, names, entries {% endblock %} 
+{% block content %}
+<h2>Pages</h2>
+<hr>
+<p>
+	<a href="{{ url('page-new') }}">New page</a>
+</p>
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Alias</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for page in pages %}
+		<tr>
+			<td>{{ page.Title }}</td>
+			<td>{{ page.Alias }}</td>
+			<td><a
+				href="{{ url('page-edit') }}/{{ page.Alias }}"
+				class="tdimg" title="Edit"> <img
+					src="{{ app.request.basepath }}/assets/img/icons/edit.png" class="icon" alt="Edit" />
+			</a> <a
+				href="{{ url('page-delete') }}/{{ page.Alias }}"
+				class="tdimg" title="Delete"> <img
+					src="{{ app.request.basepath }}/assets/img/icons/delete.png" class="icon" alt="Delete" />
+			</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

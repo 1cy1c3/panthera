@@ -1,0 +1,13 @@
+{% extends layout %} 
+{% block title %} New page {% endblock %} 
+{% block description %} Create new page in the cms {% endblock %} 
+{% block keywords %} pages, names, entries {% endblock %} 
+{% block content %}
+<h2>New page</h2>
+<hr>
+<form name="newPage" action="#" method="post">
+	{{ form_widget(newPage) }}
+	<input type="submit" name="insertPage"
+		value="Insert" />
+</form>
+{% endblock %}

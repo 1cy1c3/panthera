@@ -1,0 +1,62 @@
+{% extends layout %} 
+{% block title %} Database {% endblock %} 
+{% block description %} Database of the cms {% endblock %} 
+{% block keywords %} tables, tuples, mysql {% endblock %} 
+{% block content %}
+
+<h2>
+	Table {{ table }}
+</h2>
+<hr>
+<form name="checkTuple">
+	<table class="dbtable">
+		<thead>
+			<tr>
+				<th><input type="checkbox" id="checkall" onClick="checkAll()" /></th>
+				{% for column in columns %}
+					<th>{{ column.Field }}</th>
+				{% endfor %}
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% set x = 0 %}
+		{% for tbl in tbls %}
+		<tr onClick="check({{ x }})">
+				<td><input type="checkbox" id="tuple-{{ x }}" name="tuple"
+					value="{{ x }}" onclick="check({{ x }})" /></td>
+				{% for data in tbl %}
+					<td>{{ data }}</td>
+				{% endfor %}
+				<td><a
+					href="{{ url('tuple-edit') }}/{{ table }}/{{ x }}"
+					class="tdimg" title="Edit"> <img
+						src="{{ app.request.basepath }}/assets/img/icons/edit.png" class="icon" alt="Edit" />
+				</a> <a
+					href="#"
+					class="tdimg" title="Delete"> <img
+						src="{{ app.request.basepath }}/assets/img/icons/delete.png" class="icon" alt="Delete" />
+				</a></td>
+			{% set x = x + 1 %}
+			{% endfor %}
+			</tr>
+		</tbody>
+	</table>
+</form>
+<a
+	href="">
+</a>
+<script type="text/javascript">
+	function check(i) {
+		document.getElementById("tuple-" + i).checked = 
+			!document.getElementById("tuple-" + i).checked;
+	}	
+	function checkAll() {
+		for (var i = 0; i < document.checkTuple.tuple.length; i++) {
+			document.checkTuple.tuple[i].checked = 
+				document.getElementById("checkall").checked;
+		}
+	}
+</script>
+
+{% endblock %}

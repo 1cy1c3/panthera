@@ -1,0 +1,21 @@
+{% extends layout %} 
+{% block title %} Delete menu {% endblock %} 
+{% block description %} Delete a menu in the cms {% endblock %} 
+{% block keywords %} menus, names, delete {% endblock %} 
+{% block content %}
+<h2>Delete menu</h2>
+<hr>
+{% if delete == 0 %}
+<p class="notice">
+	This menu will be deleted irreversible! Are you sure?
+</p>
+<a href="{{ url('menus') }}">Cancel</a>
+<a
+	href="{{ url('menu-delete') }}/{{ menuNameId }}/1">Delete
+	menu</a>
+{% elseif delete == 1 %}
+	<p class="correct">
+	The menu <b>{{ menuName }}</b> has been deleted!
+</p>
+{% endif %}
+{% endblock %}

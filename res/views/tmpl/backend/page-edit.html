@@ -1,0 +1,68 @@
+{% extends layout %} 
+{% block title %} Edit page {% endblock %} 
+{% block description %} Edit a page in the cms {% endblock %} 
+{% block keywords %} pages, names, entries {% endblock %} 
+{% block head %}
+{% endblock %}
+{% block content %}
+
+<h2>Edit page</h2>
+<hr>
+<form name="editPage" action="#" method="post">
+<div id="adminpage">
+	{{ form_row(editPage.pageTitle) }}<br />
+	{{ form_row(editPage.pageAlias) }}<br />
+	{{ form_row(editPage.pageContent) }}
+</div>
+<h3>Menu</h3>
+	<select name="menu" onchange="document.forms[0].submit();">
+		<option value="0">-- No menu --</option>
+		{% for menu in menus %}	
+			<option value="{{ menu.MenuNameId}}"		
+			{% if postMenu == menu.MenuNameId %}
+				selected = "selected"
+			{% elseif menuId == menu.MenuNameId and not postMenu %}
+				selected = "selected"			
+			{% endif %}					
+			>{{ menu.Name}}</option>
+		{% endfor %}
+	</select>
+	<div id="menuPreview">
+	<ul>
+		{% for menuEntry in menuEntries2 %}
+			<li><a href="{{ menuEntry.Link }}" attribute="menu-{{ menuEntry.EntryId }}">{{ menuEntry.Title }}</a></li>
+		{% endfor %}
+	</ul>
+	</div>
+	<div id="clear"><br />
+	<input type="submit" name="updatePage" value="Update" />
+	</div>
+</form>
+
+<script type="text/javascript"
+			src="{{ app.request.basepath }}/assets/js/tinymce/tinymce.min.js"></script>
+		<script type="text/javascript">
+		tinyMCE.init({
+			// General options
+			language : "de",
+			relative_urls: false,
+			mode : "textareas",
+			theme : "modern",
+			height : "50%",
+			width : "80%",
+			plugins: "table, print, textcolor, code, image, emoticons, fullscreen",
+			image_list : 
+				[
+{% for image in images %}
+{title: "{{ image.Title }}", value: "{{ image.Value }}"}
+{% if not loop.last %}
+, 
+{% endif %}
+{% endfor %}
+], 
+   		 	toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    		toolbar2: "print preview media | forecolor backcolor emoticons, fullscreen",
+    		tools: "inserttable"      
+			});
+		</script>
+{% endblock %}

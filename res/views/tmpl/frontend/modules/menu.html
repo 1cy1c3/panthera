@@ -1,0 +1,12 @@
+<ul class="nav navbar-nav navbar-right">
+	{% for globalMenu in globalMenus %}
+		<li><a href="{{ globalMenu.Link }}" attribute="menu-{{ globalMenu.EntryId }}">{{ globalMenu.Title }}</a></li>
+	{% endfor %}
+</ul>
+<!-- 
+<ul id="localmenu">
+{% for localMenu in localMenus %}
+<li><a href="{{ localMenu.Link }}" attribute="menu-{{ localMenu.EntryId }}">{{ localMenu.Title }}</a></li>
+{% endfor %}
+</ul> 
+-->

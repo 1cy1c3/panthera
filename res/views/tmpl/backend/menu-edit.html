@@ -1,0 +1,31 @@
+{% extends layout %} 
+{% block title %} Edit menu {% endblock %} 
+{% block description %} Edit a menu in the cms {% endblock %} 
+{% block keywords %} menus, names, entries {% endblock %} 
+{% block content %}
+<h2>Edit menu entries</h2>
+<hr>
+<form name="editMenu" action="#" method="post">
+{% if editMenu|length == 3 %}
+	{% set n = 1 %}
+{% else %}
+	{% set n = editMenu|length / 2 %}
+{% endif %}
+{% if editMenu|length > 1 %} 
+	{% for i in 1..n %}
+		{{ form_widget(attribute(editMenu, 'title' ~ i)) }}
+		{{ form_widget(attribute(editMenu, 'link' ~ i)) }}
+		<input type="submit" name="{{ i }}-delete" value="X" />
+		<br>
+	{% endfor %}
+		<input type="submit" name="updateMenuEntries" value="Update" />
+{% endif %}
+</form>
+<h3>Insert Entry</h3>
+<form name="insertEntry" action="#" method="post">
+		{{ form_widget(insertEntry.newTitle) }}
+		{{ form_widget(insertEntry.newUrl) }}	
+	<input type="submit" name="insertMenuEntry" value="Insert" />
+</form>
+
+{% endblock %}

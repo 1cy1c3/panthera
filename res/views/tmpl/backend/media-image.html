@@ -1,0 +1,18 @@
+{% extends layout %} 
+{% block title %} Media {% endblock %} 
+{% block description %} Media manager of the cms {% endblock %} 
+{% block keywords %} media, folders, files {% endblock %} 
+{% block content %}
+<h2>Image info</h2>
+<hr>
+{% if register == true %}
+<p class="correct"> The image <b>{{ title }}</b> has been registered!</p>
+{% else %}
+<p class="error"> The image <b>{{ title }}</b> hasn't been registered!</p>
+{% endif %}
+<script type="text/javascript">
+<!--
+	setTimeout("self.location.href='{{ url('media') }}'", 1500);
+//-->
+</script>
+{% endblock %}

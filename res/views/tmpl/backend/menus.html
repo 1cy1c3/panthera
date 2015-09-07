@@ -1,0 +1,38 @@
+{% extends layout %} 
+{% block title %} Menus {% endblock %} 
+{% block description %} Display of the menus in the cms {% endblock %} 
+{% block keywords %} menus, names, entries {% endblock %} 
+{% block content %}
+<h2>Menus</h2>
+<hr>
+<p>
+	<a href="{{ url('menu-new') }}">New menu</a>
+</p>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Pages</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for menu in menus %}
+		<tr>
+			<td>{{ menu.Name }}</td>
+			<td>{{ menu.Count }}</td>
+			<td><a
+				href="{{ url('menu-edit') }}/{{ menu.MenuNameId }}"
+				class="tdimg" title="Edit"> <img src="{{ app.request.basepath }}/assets/img/icons/edit.png"
+					class="icon" alt="Edit" />
+			</a> <a
+				href="{{ url('menu-delete') }}/{{ menu.MenuNameId }}"
+				class="tdimg" title="Delete"> <img
+					src="{{ app.request.basepath }}/assets/img/icons/delete.png" class="icon" alt="Delete" />
+			</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

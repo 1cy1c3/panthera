@@ -1,0 +1,47 @@
+{% extends layout %} 
+{% block title %} Database {% endblock %} 
+{% block description %} Database of the cms {% endblock %} 
+{% block keywords %} tables, tuples, mysql {% endblock %} 
+{% block content %}
+<h2>Edit tuple</h2>
+<hr>
+<form name="editTuple"
+	action="{{ url('tuple-edit') }}/{{ table }}/{{ limit }}"
+	method="post">
+	<table>
+	{% set x = 0 %}
+		{% for column in columns %}
+		<tr>
+			<td>
+		{% if column.Key %}
+			<img src="{{ app.request.basepath }}/assets/img/icons/key.png" class="icon" alt="Key" />
+		{% endif %}
+			</td>
+			<td>{{ column.Field }}</td>
+			<td>{{ column.Type }}</td>
+			<td><input name="{{ column.Field }}"
+				value="{{ data[column.Field] }}"
+				onchange="validate('{{ column.Field }}', 
+				'{{ column.Type }}', this.value)"
+				maxlength="{{ length[x] }}" /></td>
+		</tr>
+		{% set x = x + 1 %}
+		{% endfor %}
+	</table>
+	<input type="submit" name="updateTuple" value="Update" />
+</form>
+<script type="text/javascript">
+	function isInteger(value) {
+		return (value.toString().search(/^-?[0-9]+$/) == 0);
+	}
+
+	function validate(field, type, value) {
+		if (type.substring(0, 3) == "int") {
+			if ( !isInteger(value) ) {
+				alert("The field must be an integer!");
+				document.getElementsByName(field)[0].focus();
+			}
+		}
+	}
+</script>
+{% endblock %}

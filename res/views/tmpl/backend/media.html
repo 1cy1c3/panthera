@@ -1,0 +1,55 @@
+{% extends layout %} 
+{% block title %} Media {% endblock %} 
+{% block description %} Media manager of the cms {% endblock %} 
+{% block keywords %} media, folders, files {% endblock %} 
+{% block content %}
+<h2>Media</h2>
+<hr>
+<form name="media" enctype="multipart/form-data"
+	action="{{ url('media-upload') }}{{ dir2 }}" method="post">
+	<label
+		for="file">Upload:</label> <input type="file" name="file" />
+	<input type="submit" name="uploadMedia" value="Upload" />
+</form>
+<br />
+<form name="insertFolder"
+	action="{{ url('media') }}{% if dir != '' %}/{{ dir }}{% endif %}" method="post">
+	Path:
+
+	{% for href in hrefs %}
+	
+
+	{% if href == '-' %}
+		<a href="{{ url('media') }}">/</a>
+	{% else %}
+		<a href="{{ href }}">{{ app.links[loop.index - 1] }}/</a>
+	{% endif %}
+	{% endfor %}
+
+{{ form_errors(insertFolder.folderName) }}	
+{{ form_widget(insertFolder.folderName) }}
+{{ form_widget(insertFolder._token) }}	
+<input type="submit" name="newFolder" value="Insert folder" />
+	</p>
+</form>
+<ul style="list-style-type: none;">
+{% if subfolders == false %}
+	<p class="notice">No folders available!</p>
+{% endif %}
+{% for subfolder in subfolders %}
+	<li><img src="{{ app.request.basepath }}/assets/img/icons/folder.png" class="icon"
+		alt="Folder" /> <a
+		href="{{ url('media') }}/{{ dir }}-{{ subfolder }}">{{ subfolder }}</a>
+	</li>
+{% endfor %}
+</ul>
+<ul>
+{% if files == false %}
+	<p class="notice">No files available!</p>
+{% endif %}
+{% for file in files %}
+	<li><a href="{{ app.request.basepath }}/assets/img/media{{ fileDir }}/{{ file }}">{{ file }}</a>
+	</li>
+{% endfor %}
+</ul>
+{% endblock %}

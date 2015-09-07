@@ -1,0 +1,13 @@
+{% extends layout %} 
+{% block title %} New menu {% endblock %} 
+{% block description %} Create new menu in the cms {% endblock %} 
+{% block keywords %} menus, names, entries {% endblock %} 
+{% block content %}
+<h2>New menu</h2>
+<hr>
+<form name="newMenu" action="#" method="post">
+	{{ form_widget(newMenu) }}
+	<input type="submit" name="insertMenu"
+		value="Insert" />
+</form>
+{% endblock %}

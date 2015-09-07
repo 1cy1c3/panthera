@@ -1,0 +1,24 @@
+{% extends layout %} 
+{% block title %} Plugins {% endblock %} 
+{% block description %} Plugins of the cms {% endblock %} 
+{% block keywords %} plugins, list, info {% endblock %} 
+{% block content %}
+<h2>Plugins</h2>
+<hr>
+{% set x = 0 %}
+{% for plugin in plugins %}
+<p>
+<h3>{{ plugin.name }}</h3>
+</p>
+<p>Version: {{ plugin.version }}</p>
+<p>Description: {{ plugin.description }}</p>
+<p>
+	Author: <a href="{{ plugin.link }}" target="_blank">{{ plugin.author }}</a>
+	{% if isActivated[x] == 1 %}
+		<p><a href="{{ url('plugins') }}/deactivate/{{ plugin.path }}">Deactivate</a></p>
+	{% else %}
+		<p><a href="{{ url('plugins') }}/activate/{{ plugin.path }}">Activate</a></p>
+	{% endif %}
+	{% set x = x + 1 %}
+	{% endfor %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends layout %} 
+{% block title %} Database {% endblock %} 
+{% block description %} Database of the cms {% endblock %} 
+{% block keywords %} tables, tuples, mysql {% endblock %} 
+{% block content %}
+<h2>Database</h2>
+<hr>
+<table>
+	<thead>
+		<tr>
+			<th>Table</th>
+			<th>Entries</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% set x = 0 %}
+		{% for tbl in tbls %}
+		<tr>
+			<td>{{ tbls[x] }}</td>
+			<td>{{ tuples[x] }}</td>
+			<td><a
+				href="{{ url('table-show') }}/{{ tbls[x] }}"
+				class="tdimg" title="Show"> <img
+					src="{{ app.request.basepath }}/assets/img/icons/show.png" class="icon" alt="Show" />
+			</a> <a href="#" class="tdimg" title="Edit">
+					<img src="{{ app.request.basepath }}/assets/img/icons/edit.png" class="icon" alt="Edit" />
+			</a> <a href="#" class="tdimg"
+				title="Delete"> <img src="{{ app.request.basepath }}/assets/img/icons/delete.png"
+					class="icon" alt="Delete" />
+			</a></td>
+		</tr>
+		{% set x = x + 1 %}
+		{% endfor %}
+	</tbody>
+</table>
+{% set x = 0 %}
+{% for link in links %}
+<a href="{{ url('database') }}/{{ link }}">
+{% set link = link + 1 %}
+{{ link }}
+</a>
+{% set x = x + 1 %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends layout %} 
+{% block title %} Dashboard {% endblock %} 
+{% block description %} Here are the dashboard of the cms {% endblock %} 
+{% block keywords %} dashboard, widget {% endblock %} 
+{% block head %}
+
+{% endblock %} {% block content %}
+<div id="columns">
+	{% for widget in widgets %}
+	<ul id="column{{ dashboardId }}" class="column">
+		<li class="widget color-{{ widget.0 }}">
+			<div class="widget-head">
+				<h3>{{widget.1}}</h3>
+			</div>
+			<div class="widget-content">
+				<p>{{widget.2}}</p>
+			</div>
+		</li>
+	</ul>
+	{% endfor %}
+</div>
+<link rel="stylesheet" href="{{ app.request.basepath }}/assets/css/widget/widget.css"
+	type="text/css" media="all" />
+<link rel="stylesheet" href="{{ app.request.basepath }}/assets/css/widget/widget.js.css"
+	type="text/css" media="all" />
+<script type="text/javascript" src="{{ app.request.basepath }}/assets/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript"
+	src="{{ app.request.basepath }}/assets/js/jquery-ui-personalized-1.6rc2.min.js"></script>
+<script type="text/javascript" src="{{ app.request.basepath }}/assets/js/widget/widget.js"></script>
+{% endblock %}

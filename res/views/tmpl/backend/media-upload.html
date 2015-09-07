@@ -1,0 +1,25 @@
+{% extends layout %} 
+{% block title %} Media {% endblock %} 
+{% block description %} Media manager of the cms {% endblock %} 
+{% block keywords %} media, folders, files {% endblock %} 
+{% block content %}
+<h2>Edit attributes of image</h2>
+<hr>
+<form name="insertImage" action="{{ url('media-image') }}"
+	method="post">
+	<input type="hidden" name="value"
+		value="/web/assets/img/media{{ dir }}/{{ name }}" />
+	<table>
+		<tr>
+			<td>Title:</td>
+			<td><input type="text" name="title" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" name="register" value="Register" /></td>
+		</tr>
+	</table>
+</form>
+<img src="{{ app.request.basepath }}/assets/img/media{{ dir }}/{{name}}"
+	class="preview" />
+{% endblock %}

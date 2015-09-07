@@ -1,0 +1,14 @@
+{% extends layout %} 
+{% block title %} Settings {% endblock %} 
+{% block description %} Configure global settings for cms {% endblock %} 
+{% block keywords %} settings, menu, colors {% endblock %} 
+{% block content %}
+<h2>Settings</h2>
+<form name="updateSetting" action="#" method="post">
+	<fieldset>
+		<legend>Change settings</legend>
+		{{ form_widget(updateSetting) }} <br /> <input type="submit"
+			name="newValue" value="Update" />
+	</fieldset>
+</form>
+{% endblock %}

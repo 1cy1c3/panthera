@@ -1,0 +1,22 @@
+{% extends layout %} 
+{% block title %} Delete page {% endblock %} 
+{% block description %} Delete a page in the cms {% endblock %} 
+{% block keywords %} pages, names, delete {% endblock %} 
+{% block content %}
+<h2>Delete page</h2>
+<hr>
+{% if delete == 0 %}
+<p class="notice">
+	The page {{ alias }} will be deleted irreversible! Are you sure?
+</p>
+<a href="{{ url('pages') }}">Cancel</a>
+<a
+	href="{{ url('page-delete') }}/{{ alias }}/1">Delete
+	page</a>
+	
+{% elseif delete == 1 %}
+	<p class="correct">
+	The page <b>{{ alias }}</b> has been deleted!
+</p>
+{% endif %}
+{% endblock %}
